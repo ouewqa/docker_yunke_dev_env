@@ -1,8 +1,8 @@
 init:
-    sudo python install pip
-    sudo pip install docker-compose
-    make dl
-    make pull
+	sudo python install pip
+	sudo pip install docker-compose
+	make dl
+	make pull
 
 pull:
 	docker pull nginx:1.9.0
