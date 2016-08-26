@@ -32,5 +32,3 @@ gearman:
     build: ./gearman
     ports:
       - "4730:4730"
-    volumes:
-      - ~/opt:/opt

@@ -29,6 +29,7 @@ pull:
 	docker pull redis:3.0
 	docker pull memcached:1.4
 	docker pull node:0.12
+	docker pull kendu/gearman
 
 build:
 	make build-nginx
