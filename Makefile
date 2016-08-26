@@ -1,5 +1,6 @@
 init:
-	sudo python install pip
+	sudo apt install python-pip
+	sudo pip install --upgrade pip
 	sudo pip install docker-compose
 	make dl
 	make pull
