@@ -1,7 +1,7 @@
 # specifically designed for ubuntu 16.04
 
 init:
-	install-docker-compose
+	make install-docker-compose
 	make dl
 	make pull
 
