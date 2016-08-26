@@ -1,20 +1,37 @@
+# specifically designed for ubuntu 16.04
+
 init:
-	sudo apt install python-pip
-	sudo pip install --upgrade pip
-	sudo pip install docker-compose
+	install-docker-compose
 	make dl
 	make pull
 
+install-docker:
+	sudo apt-get update
+	sudo apt-get install apt-transport-https ca-certificates
+	sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+	sudo echo deb https://apt.dockerproject.org/repo ubuntu-xenial main > /etc/apt/sources.list.d/docker.list
+	sudo apt-get update
+	sudo apt-get purge lxc-docker
+	sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
+	sudo apt-get install docker-engine
+	sudo service docker start
+	sudo groupadd docker
+	sudo usermod -aG docker $USER
+
+install-docker-compose:
+	sudo apt install python-pip
+	sudo pip install --upgrade pip
+	sudo pip install docker-compose
+
 pull:
 	docker pull nginx:1.9.0
-	docker pull php:5.6-fpm
+	docker pull php:5.6.21-fpm
 	docker pull mysql:5.6
 	docker pull redis:3.0
 	docker pull memcached:1.4
 	docker pull node:0.12
 
 dl:
-	wget https://github.com/phalcon/cphalcon/archive/1.3.5.tar.gz -O php/cphalcon.tgz
 	wget https://pecl.php.net/get/gearman-1.1.2.tgz -O php/gearman.tgz
 	wget https://pecl.php.net/get/redis-2.2.7.tgz -O php/redis.tgz
 	wget https://pecl.php.net/get/memcached-2.2.0.tgz -O php/memcached.tgz
@@ -26,7 +43,6 @@ dl:
 
 build:
 	make build-nginx
-	make build-mysql
 	make build-php
 	make build-node
 
