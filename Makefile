@@ -2,7 +2,6 @@
 
 init:
 	make install-docker-compose
-	make dl
 	make pull
 
 install-docker:
@@ -30,16 +29,6 @@ pull:
 	docker pull redis:3.0
 	docker pull memcached:1.4
 	docker pull node:0.12
-
-dl:
-	wget -c https://pecl.php.net/get/gearman-1.1.2.tgz -O php/gearman.tgz
-	wget -c https://pecl.php.net/get/redis-2.2.7.tgz -O php/redis.tgz
-	wget -c https://pecl.php.net/get/memcached-2.2.0.tgz -O php/memcached.tgz
-	wget -c https://pecl.php.net/get/xdebug-2.3.2.tgz -O php/xdebug.tgz
-	wget -c https://pecl.php.net/get/msgpack-0.5.6.tgz -O php/msgpack.tgz
-	wget -c https://pecl.php.net/get/memcache-2.2.7.tgz -O php/memcache.tgz
-	wget -c https://pecl.php.net/get/xhprof-0.9.4.tgz -O php/xhprof.tgz
-	wget -c https://getcomposer.org/composer.phar -O php/composer.phar
 
 build:
 	make build-nginx
