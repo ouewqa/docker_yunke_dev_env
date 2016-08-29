@@ -2,6 +2,7 @@
 
 init:
 	make install-docker-compose
+	make set_docker_accelerate
 	make pull
 
 install-docker:
@@ -16,11 +17,18 @@ install-docker:
 	sudo service docker start
 	sudo groupadd docker
 	sudo usermod -aG docker $USER
+	make set_docker_accelerate
 
 install-docker-compose:
 	sudo apt install python-pip
 	sudo pip install --upgrade pip
 	sudo pip install docker-compose
+
+set_docker_accelerate:
+	sudo mkdir -p /etc/systemd/system/docker.service.d
+	sudo cp -f ./mirror.conf /etc/systemd/system/docker.service.d/
+	sudo systemctl daemon-reload
+	sudo systemctl restart docker
 
 pull:
 	docker pull nginx:1.9.0
