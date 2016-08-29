@@ -12,7 +12,6 @@ php:
     ports:
       - "9000:9000"
     links:
-      - "mysql"
       - "memcache"
       - "redis"
       - "gearman"
